@@ -1,21 +1,24 @@
 package com.payment.utils;
 
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 public class ResponseUtil {
 
-  public static String success(JsonObject data) {
-    return new JsonObject()
-      .put("success", true)
-      .put("data", data)
-      .encode();
-  }
+  public static String success(Object data) {
 
-  public static String success(JsonArray data) {
-    return new JsonObject()
-      .put("success", true)
-      .put("data", data)
-      .encode();
+    JsonObject response = new JsonObject()
+      .put("success", true);
+
+    if (data instanceof JsonObject) {
+      response.put("data", (JsonObject) data);
+    } else if (data instanceof JsonArray) {
+      response.put("data", (JsonArray) data);
+    } else {
+      response.put("data", data);
+    }
+
+    return response.encode();
   }
 
   public static String error(String message) {

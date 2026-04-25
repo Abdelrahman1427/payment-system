@@ -7,8 +7,8 @@
     "host": "localhost",
     "port": 5432,
     "database": "payment_db",
-    "user": "payment_user",
-    "password": "secure_password",
+    "user": "postgres",
+    "password": "postgres",
     "maxSize": 20
   },
   "redis": {
