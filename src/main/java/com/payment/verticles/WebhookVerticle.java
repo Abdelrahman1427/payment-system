@@ -1,5 +1,6 @@
 package com.payment.verticles;
 
+import com.payment.config.DatabaseConfig;
 import com.payment.models.WebhookEvent;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
@@ -23,8 +24,7 @@ public class WebhookVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) {
     this.webhookSecret = config().getJsonObject("moyasar").getString("webhookSecret");
-    pgPool = PgPool.pool(vertx, config().getJsonObject("database"));
-
+    pgPool = DatabaseConfig.getClient();
     vertx.eventBus().consumer("webhook.moyasar", this::handleMoyasarWebhook);
 
     System.out.println("🔔 Webhook Service started");

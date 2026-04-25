@@ -1,5 +1,6 @@
 package com.payment.verticles;
 
+import com.payment.config.DatabaseConfig;
 import com.payment.models.Payment;
 import com.payment.utils.CircuitBreakerFactory;
 import io.vertx.circuitbreaker.CircuitBreaker;
@@ -39,7 +40,7 @@ public class PaymentVerticle extends AbstractVerticle {
       config().getJsonObject("circuitBreaker"));
 
     // الاتصال بـ PostgreSQL
-    pgPool = PgPool.pool(vertx, config().getJsonObject("database"));
+    pgPool = DatabaseConfig.getClient();
 
     // تسجيل الـ Event Bus Consumers
     vertx.eventBus().consumer("payment.create", this::createPayment);
