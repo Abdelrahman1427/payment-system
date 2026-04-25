@@ -1,0 +1,36 @@
+{
+  "http": {
+    "port": 8080,
+    "host": "0.0.0.0"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "payment_db",
+    "user": "payment_user",
+    "password": "secure_password",
+    "maxSize": 20
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379
+  },
+  "moyasar": {
+    "baseUrl": "https://api.moyasar.com/v1",
+    "secretKey": "sk_test_xxx",
+    "publishableKey": "pk_test_xxx",
+    "webhookSecret": "whsec_xxx"
+  },
+  "jwt": {
+    "secret": "your-super-secret-jwt-key-change-in-production",
+    "expiresInMinutes": 60
+  },
+  "rateLimit": {
+    "requestsPerMinute": 100
+  },
+  "circuitBreaker": {
+    "maxFailures": 5,
+    "timeout": 5000,
+    "resetTimeout": 30000
+  }
+}
